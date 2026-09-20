@@ -42,4 +42,28 @@ public class Caja {
         }
         console.writeln();
     }
+
+    public int obtenerPersonasAtendidas() {
+        return this.personasAtendidas;
+    }
+
+    public int obtenerItemsVendidos() {
+        return this.itemsVendidos;
+    }
+
+    public boolean puedeAtender(Cliente cliente) {
+        return true;
+    }
+
+    public int obtenerNumero() {
+        return this.numero;
+    }
+
+    public int obtenerItemsRestantes() {
+        return this.itemsRestantes;
+    }
+
+    public Console obtenerConsole() {
+        return this.console;
+    }
 }
