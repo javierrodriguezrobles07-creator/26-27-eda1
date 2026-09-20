@@ -4,12 +4,16 @@ public class Cliente {
     private int id;
     private int tiempoEnFila;
     private int items;
+    private boolean esPreferente;
+    private int idConocido;
 
-    public Cliente(int items) {
+    public Cliente(int items, boolean esPreferente, int idConocido) {
         this.id = contadorGlobal;
         contadorGlobal++;
         this.tiempoEnFila = 0;
         this.items = items;
+        this.esPreferente = esPreferente;
+        this.idConocido = idConocido;
     }
 
     public int getId() {
@@ -26,5 +30,13 @@ public class Cliente {
 
     public int obtenerItems() {
         return items;
+    }
+
+    public boolean esPreferente() {
+        return esPreferente;
+    }
+
+    public int getIdConocido() {
+        return idConocido;
     }
 }
