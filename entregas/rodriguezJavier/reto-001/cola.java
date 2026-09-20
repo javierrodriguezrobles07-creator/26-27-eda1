@@ -17,6 +17,26 @@ public class Cola {
         }
     }
 
+    public void añadirClientePreferente(Cliente cliente) {
+        int ultimoPreferente = -1;
+        for (int i = 0; i < tamaño; i++) {
+            if (clientes[i].esPreferente()) {
+                ultimoPreferente = i;
+            }
+        }
+        int posicionInsercion;
+        if (ultimoPreferente == -1) {
+            posicionInsercion = 0;
+        } else {
+            posicionInsercion = ultimoPreferente + 1;
+        }
+        for (int i = tamaño; i > posicionInsercion; i--) {
+            clientes[i] = clientes[i - 1];
+        }
+        clientes[posicionInsercion] = cliente;
+        tamaño = tamaño + 1;
+    }
+
     public boolean hayClientes() {
         return tamaño > 0;
     }
