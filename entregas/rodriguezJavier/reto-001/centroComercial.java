@@ -1,6 +1,7 @@
 public class CentroComercial {
     private Cola cola;
     private Caja[] cajas;
+    private Tiempo tiempo;
     private Console console;
     private boolean llegaClienteEsteMinuto;
     private final double PROBABILIDAD_LLEGADA = 0.6;
@@ -13,11 +14,14 @@ public class CentroComercial {
         for (int i = 0; i < cajas.length; i++) {
             cajas[i] = new Caja(i + 1);
         }
+        this.tiempo = new Tiempo();
     }
 
     public void simular() {
         console.writeln("--- INICIO DE LA SIMULACION ---");
-        for (int minuto = 1; minuto <= 120; minuto++) {
+        while (!tiempo.haTerminado()) {
+            tiempo.avanzarMinuto();
+            int minuto = tiempo.obtenerMinutoActual();
             cola.avanzarMinuto();
             this.procesarLlegadaCliente(minuto);
             this.asignarClientesACajas();
