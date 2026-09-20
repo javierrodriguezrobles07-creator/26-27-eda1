@@ -58,6 +58,29 @@ public class Cola {
         tamaño = tamaño + 1;
     }
 
+    public void revisarAburrimiento() {
+        if (Math.random() < 0.3) {
+            for (int i = tamaño - 1; i >= 0; i--) {
+                if (clientes[i].estaAburrido()) {
+                    console.writeln("Cliente " + clientes[i].getId() + " se aburrio y se fue.");
+                    for (int j = i; j < tamaño - 1; j++) {
+                        clientes[j] = clientes[j + 1];
+                    }
+                    clientes[tamaño - 1] = null;
+                    tamaño = tamaño - 1;
+                }
+            }
+        }
+    }
+
+    public Cliente getClienteAleatorio() {
+        if (tamaño == 0) {
+            return null;
+        }
+        int indice = (int) (Math.random() * tamaño);
+        return clientes[indice];
+    }
+
     public boolean hayClientes() {
         return tamaño > 0;
     }
