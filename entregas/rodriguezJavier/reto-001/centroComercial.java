@@ -25,6 +25,18 @@ public class CentroComercial {
             this.procesarReglasExtendidas(minuto);
             this.mostrarEstado(minuto);
         }
+        this.mostrarResumen();
+    }
+
+    private void mostrarResumen() {
+        int totalAtendidos = 0;
+        for (int i = 0; i < cajas.length; i++) {
+            totalAtendidos = totalAtendidos + cajas[i].obtenerPersonasAtendidas();
+        }
+        console.writeln();
+        console.writeln("--- RESUMEN FINAL ---");
+        console.writeln("Personas atendidas: " + totalAtendidos);
+        console.writeln("Personas en cola al cierre: " + cola.obtenerCantidadPersonasEnCola());
     }
 
     private void procesarReglasExtendidas(int minuto) {
@@ -32,11 +44,9 @@ public class CentroComercial {
             if (minuto % 5 == 0) {
                 cola.eliminarAburridos();
             }
-
             if (minuto % 15 == 0 && cola.obtenerCantidadPersonasEnCola() > 25) {
                 console.writeln("Parlantes: Pasen por esta caja en orden de fila.");
             }
-
             if (Math.random() < 0.05) {
                 console.writeln("Evento: alguien entrega sus compras a otra persona en la fila.");
             }
