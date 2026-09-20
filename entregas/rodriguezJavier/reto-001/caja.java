@@ -34,4 +34,12 @@ public class Caja {
             }
         }
     }
+
+    public void mostrar() {
+        console.write("Caja [" + numero + "] ");
+        for (int i = 0; i < itemsRestantes; i++) {
+            console.write("[:]");
+        }
+        console.writeln();
+    }
 }
