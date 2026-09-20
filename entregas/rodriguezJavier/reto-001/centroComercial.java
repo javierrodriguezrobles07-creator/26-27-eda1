@@ -22,7 +22,24 @@ public class CentroComercial {
             this.procesarLlegadaCliente(minuto);
             this.asignarClientesACajas();
             this.procesarAtencionCajas();
+            this.procesarReglasExtendidas(minuto);
             this.mostrarEstado(minuto);
+        }
+    }
+
+    private void procesarReglasExtendidas(int minuto) {
+        if (minuto >= 20) {
+            if (minuto % 5 == 0) {
+                cola.eliminarAburridos();
+            }
+
+            if (minuto % 15 == 0 && cola.obtenerCantidadPersonasEnCola() > 25) {
+                console.writeln("Parlantes: Pasen por esta caja en orden de fila.");
+            }
+
+            if (Math.random() < 0.05) {
+                console.writeln("Evento: alguien entrega sus compras a otra persona en la fila.");
+            }
         }
     }
 
@@ -34,7 +51,21 @@ public class CentroComercial {
     private void procesarLlegadaCliente(int minuto) {
         llegaClienteEsteMinuto = Math.random() < PROBABILIDAD_LLEGADA;
         if (llegaClienteEsteMinuto) {
-            Cliente nuevo = new Cliente(5, false, -1);
+            boolean esPreferente = false;
+            int idConocido = -1;
+
+            if (minuto >= 20) {
+                if (Math.random() < 0.1) {
+                    esPreferente = true;
+                } else if (Math.random() < 0.05) {
+                    if (cola.hayClientes()) {
+                        Cliente conocido = cola.primero();
+                        idConocido = conocido.getId();
+                    }
+                }
+            }
+
+            Cliente nuevo = new Cliente(5, esPreferente, idConocido);
             cola.añadirCliente(nuevo);
         }
     }
