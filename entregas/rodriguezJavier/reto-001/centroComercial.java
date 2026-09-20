@@ -14,6 +14,8 @@ public class CentroComercial {
         for (int i = 0; i < cajas.length; i++) {
             cajas[i] = new Caja(i + 1);
         }
+        cajas[0] = new CajaExpress(1);
+        cajas[4] = new CajaExpress(5);
         this.tiempo = new Tiempo();
     }
 
@@ -89,7 +91,8 @@ public class CentroComercial {
 
     private void asignarClientesACajas() {
         for (int i = 0; i < cajas.length; i++) {
-            if (cajas[i].estaLibre() && cola.hayClientes()) {
+            if (cajas[i].estaLibre() && cola.hayClientes()
+                    && cajas[i].puedeAtender(cola.primero())) {
                 Cliente siguiente = cola.quitarCliente();
                 cajas[i].asignar(siguiente);
             }
