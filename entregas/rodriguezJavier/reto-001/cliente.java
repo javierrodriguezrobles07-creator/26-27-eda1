@@ -39,4 +39,12 @@ public class Cliente {
     public int getIdConocido() {
         return idConocido;
     }
+
+    public boolean estaAburrido() {
+        return this.tiempoEnFila > 8;
+    }
+
+    public String toString() {
+        return "Cliente[" + id + "]";
+    }
 }
