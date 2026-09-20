@@ -30,13 +30,16 @@ public class CentroComercial {
 
     private void mostrarResumen() {
         int totalAtendidos = 0;
+        int totalItems = 0;
         for (int i = 0; i < cajas.length; i++) {
             totalAtendidos = totalAtendidos + cajas[i].obtenerPersonasAtendidas();
+            totalItems = totalItems + cajas[i].obtenerItemsVendidos();
         }
         console.writeln();
         console.writeln("--- RESUMEN FINAL ---");
         console.writeln("Personas atendidas: " + totalAtendidos);
         console.writeln("Personas en cola al cierre: " + cola.obtenerCantidadPersonasEnCola());
+        console.writeln("Items vendidos: " + totalItems);
     }
 
     private void procesarReglasExtendidas(int minuto) {
