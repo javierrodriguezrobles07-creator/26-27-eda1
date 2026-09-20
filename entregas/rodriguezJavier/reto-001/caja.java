@@ -14,4 +14,24 @@ public class Caja {
         this.itemsRestantes = 0;
         this.console = new Console();
     }
+
+    public boolean estaLibre() {
+        return this.cliente == null;
+    }
+
+    public void asignar(Cliente cliente) {
+        this.cliente = cliente;
+        this.itemsRestantes = cliente.obtenerItems();
+    }
+
+    public void avanzarAtencion() {
+        if (!this.estaLibre()) {
+            this.itemsRestantes = this.itemsRestantes - 1;
+            if (this.itemsRestantes == 0) {
+                this.personasAtendidas = this.personasAtendidas + 1;
+                this.itemsVendidos = this.itemsVendidos + this.cliente.obtenerItems();
+                this.cliente = null;
+            }
+        }
+    }
 }
