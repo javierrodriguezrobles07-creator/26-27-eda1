@@ -16,12 +16,19 @@ public class CentroComercial {
     }
 
     public void simular() {
+        console.writeln("--- INICIO DE LA SIMULACION ---");
         for (int minuto = 1; minuto <= 120; minuto++) {
             cola.avanzarMinuto();
             this.procesarLlegadaCliente(minuto);
             this.asignarClientesACajas();
             this.procesarAtencionCajas();
+            this.mostrarEstado(minuto);
         }
+    }
+
+    private void mostrarEstado(int minuto) {
+        console.writeln("Minuto " + minuto + ": Longitud de la fila = "
+                + cola.obtenerCantidadPersonasEnCola() + " metros.");
     }
 
     private void procesarLlegadaCliente(int minuto) {
