@@ -37,6 +37,27 @@ public class Cola {
         tamaño = tamaño + 1;
     }
 
+    public void añadirClienteColado(Cliente cliente) {
+        int posConocido = -1;
+        for (int i = 0; i < tamaño; i++) {
+            if (clientes[i].getId() == cliente.getIdConocido()) {
+                posConocido = i;
+                break;
+            }
+        }
+        int posicionInsercion;
+        if (posConocido == -1) {
+            posicionInsercion = tamaño;
+        } else {
+            posicionInsercion = posConocido + 1;
+        }
+        for (int i = tamaño; i > posicionInsercion; i--) {
+            clientes[i] = clientes[i - 1];
+        }
+        clientes[posicionInsercion] = cliente;
+        tamaño = tamaño + 1;
+    }
+
     public boolean hayClientes() {
         return tamaño > 0;
     }
