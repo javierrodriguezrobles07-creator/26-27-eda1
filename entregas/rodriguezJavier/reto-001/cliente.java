@@ -3,11 +3,13 @@ public class Cliente {
     
     private int id;
     private int tiempoEnFila;
+    private int items;
 
-    public Cliente() {
+    public Cliente(int items) {
         this.id = contadorGlobal;
         contadorGlobal++;
         this.tiempoEnFila = 0;
+        this.items = items;
     }
 
     public int getId() {
@@ -20,5 +22,9 @@ public class Cliente {
 
     public void aumentarTiempo() {
         this.tiempoEnFila = this.tiempoEnFila + 1;
+    }
+
+    public int obtenerItems() {
+        return items;
     }
 }
