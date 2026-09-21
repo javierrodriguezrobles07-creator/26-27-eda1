@@ -58,7 +58,7 @@ public class Cola {
         tamaño = tamaño + 1;
     }
 
-    public void revisarAburrimiento() {
+    public void eliminarAburridos() {
         if (Math.random() < 0.3) {
             for (int i = tamaño - 1; i >= 0; i--) {
                 if (clientes[i].estaAburrido()) {
@@ -70,6 +70,12 @@ public class Cola {
                     tamaño = tamaño - 1;
                 }
             }
+        }
+    }
+
+    public void avanzarMinuto() {
+        for (int i = 0; i < tamaño; i++) {
+            clientes[i].aumentarTiempo();
         }
     }
 
@@ -111,7 +117,7 @@ public class Cola {
 
     public void mostrar() {
         for (int i = 0; i < tamaño; i++) {
-            clientes[i].mostrar();
+            console.writeln(clientes[i].toString());
         }
         console.writeln();
     }
