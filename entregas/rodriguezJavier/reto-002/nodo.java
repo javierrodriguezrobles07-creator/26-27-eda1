@@ -11,7 +11,15 @@ class Nodo {
         return this.valor;
     }
 
+    public void establecerValor(int valor) {
+        this.valor = valor;
+    }
+
     public Nodo obtenerSiguiente() {
         return this.siguiente;
+    }
+
+    public void establecerSiguiente(Nodo siguiente) {
+        this.siguiente = siguiente;
     }
 }
