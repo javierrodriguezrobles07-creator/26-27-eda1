@@ -52,4 +52,35 @@ class ListaEnlazada {
 
         cabeza = dummy.obtenerSiguiente();
     }
+    
+    public void eliminarRepetidosSinDummy() {
+        while (cabeza != null && cabeza.obtenerSiguiente() != null
+                && cabeza.obtenerValor() == cabeza.obtenerSiguiente().obtenerValor()) {
+            int valorRepetido = cabeza.obtenerValor();
+            while (cabeza != null && cabeza.obtenerValor() == valorRepetido) {
+                cabeza = cabeza.obtenerSiguiente();
+            }
+        }
+
+        if (cabeza == null) {
+            return;
+        }
+
+        Nodo previo = cabeza;
+        Nodo actual = cabeza.obtenerSiguiente();
+
+        while (actual != null) {
+            if (actual.obtenerSiguiente() != null
+                    && actual.obtenerValor() == actual.obtenerSiguiente().obtenerValor()) {
+                int valorRepetido = actual.obtenerValor();
+                while (actual != null && actual.obtenerValor() == valorRepetido) {
+                    actual = actual.obtenerSiguiente();
+                }
+                previo.establecerSiguiente(actual);
+            } else {
+                previo = actual;
+                actual = actual.obtenerSiguiente();
+            }
+        }
+    }
 }
