@@ -28,4 +28,28 @@ class ListaEnlazada {
         }
         System.out.println("null");
     }
+
+    public void eliminarRepetidos() {
+        Nodo dummy = new Nodo(-1);
+        dummy.establecerSiguiente(cabeza);
+
+        Nodo previo = dummy;
+        Nodo actual = cabeza;
+
+        while (actual != null) {
+            if (actual.obtenerSiguiente() != null
+                    && actual.obtenerValor() == actual.obtenerSiguiente().obtenerValor()) {
+                int valorRepetido = actual.obtenerValor();
+                while (actual != null && actual.obtenerValor() == valorRepetido) {
+                    actual = actual.obtenerSiguiente();
+                }
+                previo.establecerSiguiente(actual);
+            } else {
+                previo = actual;
+                actual = actual.obtenerSiguiente();
+            }
+        }
+
+        cabeza = dummy.obtenerSiguiente();
+    }
 }
