@@ -16,6 +16,23 @@ class Ejemplo {
         probarFusion(new int[] { 1, 1 }, new int[] { 1 });
     }
 
+    static void probarEliminar(int[] valores) {
+        ListaEnlazada conDummy = construirLista(valores);
+        ListaEnlazada sinDummy = construirLista(valores);
+
+        System.out.print("Entrada:      ");
+        conDummy.imprimirLista();
+
+        conDummy.eliminarRepetidos();
+        sinDummy.eliminarRepetidosSinDummy();
+
+        System.out.print("Con dummy:    ");
+        conDummy.imprimirLista();
+        System.out.print("Sin dummy:    ");
+        sinDummy.imprimirLista();
+        System.out.println();
+    }
+
     static ListaEnlazada construirLista(int[] valores) {
         ListaEnlazada lista = new ListaEnlazada();
         for (int i = 0; i < valores.length; i++) {
