@@ -52,7 +52,7 @@ class ListaEnlazada {
 
         cabeza = dummy.obtenerSiguiente();
     }
-    
+
     public void eliminarRepetidosSinDummy() {
         while (cabeza != null && cabeza.obtenerSiguiente() != null
                 && cabeza.obtenerValor() == cabeza.obtenerSiguiente().obtenerValor()) {
@@ -82,5 +82,38 @@ class ListaEnlazada {
                 actual = actual.obtenerSiguiente();
             }
         }
+    }
+
+    public static ListaEnlazada fusionar(ListaEnlazada a, ListaEnlazada b) {
+        ListaEnlazada resultado = new ListaEnlazada();
+        Nodo dummy = new Nodo(-1);
+        Nodo cola = dummy;
+
+        Nodo nodoA = a.cabeza;
+        Nodo nodoB = b.cabeza;
+
+        while (nodoA != null && nodoB != null) {
+            if (nodoA.obtenerValor() <= nodoB.obtenerValor()) {
+                cola.establecerSiguiente(nodoA);
+                nodoA = nodoA.obtenerSiguiente();
+            } else {
+                cola.establecerSiguiente(nodoB);
+                nodoB = nodoB.obtenerSiguiente();
+            }
+            cola = cola.obtenerSiguiente();
+        }
+
+        if (nodoA != null) {
+            cola.establecerSiguiente(nodoA);
+        } else {
+            cola.establecerSiguiente(nodoB);
+        }
+
+        resultado.cabeza = dummy.obtenerSiguiente();
+
+        a.cabeza = null;
+        b.cabeza = null;
+
+        return resultado;
     }
 }
